@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+   <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+   <material name="orange">
+        <color rgba="1 0.3 0.1 1" />
+    </material>
+
+   <material name="blue">
+        <color rgba="0.2 0.2 1 1" />
+    </material>
+
+   <material name="black">
+        <color rgba="0 0 0 1" />
+    </material>
+
+    <link name="base_link">
+    </link>
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="-0.1 0 0"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0.15 0 0.075" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.3 0.3 0.15"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+    </link>
+
+    <!-- LEFT WHEEL -->
+    <joint name="left_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin xyz="0 0.175 0" rpy="-${pi/2} 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.04" radius="0.05" />
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+</robot>
